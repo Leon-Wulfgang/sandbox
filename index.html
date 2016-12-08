@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sandbox</title>
+
+    <!-- Load c3.css -->
+    <link href="c3/c3-0.4.11/c3.css" rel="stylesheet" type="text/css">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="d3/d3-3.5.17/d3.js" charset="utf-8"></script>
+    <script src="c3/c3-0.4.11/c3.js"></script>
+
+
+    <style type="text/css">
+
+      div.bar {
+        display: inline-block;
+        width: 20px;
+        height: 75px;
+        background-color: teal;
+        margin-right: 2px;
+      }
+
+      #chart .c3-line-data2 {
+        stroke-width: 5px;
+      }
+
+
+    </style>
+  </head>
+  <body>
+
+    <!-- api/fn testers -->
+    <button onclick="chart_load();">Load</button>
+    <button onclick="chart_unload();">UnLoad</button>
+    <button onclick="chart_hide();">Hide</button>
+    <button onclick="chart_show();">Show</button>
+
+    <!-- the dive element where the chart will be bind to-->
+    <div id="chart"></div>
+
+
+
+    <script type="text/javascript">
+
+      /*
+      var chart = c3.generate({
+          bindto: '#chart',
+          data: {
+              url: 'c3eg00.json',
+              mimeType: 'json'
+          }
+      });
+      */
+
+      // c3 chart
+      var chart = c3.generate({
+
+          // target element
+          bindto: '#chart',
+
+          // data set
+          data: {
+
+            // row by row or col by col
+            rows: [ // columns
+              ['data1', 'data2', 'data3'],
+              [90, 120, 300],
+              [40, 160, 240],
+              [50, 200, 290],
+              [120, 160, 230],
+              [80, 130, 300],
+              [90, 220, 320],
+            ],
+
+            // label axes
+            axes: {
+              data2: 'y2' // ADD
+            },
+
+            // additional type for additional chart
+            types: {
+              data2: 'bar' // ADD
+            }
+
+          },
+
+          // axis attributes
+          axis: {
+
+            y: {
+              // add label to axis
+              label: {
+                // text of the label
+                text: 'Y Label',
+                // position of the label
+                position: 'outer-middle'
+              },
+              // format the axis
+              tick: {
+                format: d3.format("$,") // ADD
+              }
+            },
+
+            y2: {
+              // default won't show
+              show: true, // ADD
+              label: {
+                text: 'Y2 Label',
+                position: 'outer-middle'
+              }
+            }
+
+          }
+      });
+
+      // api/function for load data
+      function chart_load() {
+          chart.load({
+              columns: [
+                  ['data1', 300, 100, 250, 150, 300, 150, 500],
+                  ['data2', 100, 200, 150, 50, 100, 250],
+                  ['data3', 600, 700, 350, 450, 800, 550]
+              ]
+          });
+      }
+
+      // api/fn for unload data
+      function chart_unload(){
+        chart.unload({
+            ids: ['data2', 'data3']
+        });
+      }
+
+      // hide data
+      function chart_hide(){
+        chart.hide(['data2', 'data3']);
+      }
+
+      // show data
+      function chart_show(){
+        chart.show(['data2', 'data3']);
+      }
+
+
+    </script>
+
+    <script type="text/javascript">
+
+
+
+
+
+          var dataset = [];  						 //Initialize empty array
+          for (var i = 0; i < 25; i++) {			 //Loop 25 times
+            var newNumber = Math.round(Math.random() * 30);  //New random number (0-30)
+            dataset = dataset.concat(newNumber); //Add new number to array
+          }
+
+                d3.select("body")
+                    .selectAll("div")
+                    .data(dataset)
+                    .enter()
+                    .append("div")
+                    .attr("class", "bar")
+                    .style("height", function(d) {
+                        var barHeight = d * 5;  //Scale up by factor of 5
+                        return barHeight + "px";
+                    });
+
+                d3.select("body")
+                    .selectAll("p")
+                    .data(dataset)
+                    .enter()
+                    .append("p")
+                    .text(
+                        function(d) {
+                            return "I can count up to " + d;
+                        }
+                    )
+                    .style(
+                        "color",
+                        function(d) {
+                            if (d > 15) {   //Threshold of 15
+                                return "red";
+                            } else {
+                                return "black";
+                            }
+                        }
+                    )
+                    ;
+
+
+
+
+    </script>
+
+    <svg width="500" height="50">
+    </svg>
+
+  </body>
+</html>
