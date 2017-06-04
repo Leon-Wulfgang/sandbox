@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>resp</title>
+
+    <link rel="stylesheet" href="small.css"> <!--load css for small-->
+    <link rel="stylesheet" media="screen and (min-width:500px)" href="over500.css"><!--load over500css when screen > 500px -->
+    <link rel="stylesheet" media="screen and (min-width:800px)" href="over800.css"><!--load over800css when screen > 800px -->
+
+  </head>
+
+  <body>
+    <!--
+    divs
+    -->
+    <style type="text/css">
+      .container{
+        width:100%;
+        display: flex; /* fluid divs, resize divs, by default into row*/
+        flex-wrap: wrap; /* no-resize divs, wrap to next row*/
+      }
+      .box {
+        width : 150px;
+      }
+      @media screen and (min-width: 700px) {
+        .dark_blue {order: 3} /*order of element, -1 > 0 > 1 */
+        .light_blue {order: 1}
+        .green {order: 2}
+      }
+      @media screen and (max-width: 400px) { /*applies when screen < 400px*/
+        body {
+          background-color:red;
+        }
+      }
+      @media screen and (min-width: 401px) and (max-width: 599px) { /*applies when 401px < screen < 599px */
+        body {
+          background-color:green;
+        }
+      }
+      @media screen and (min-width: 600px) { /*applies when screen > 600px*/
+        body {
+          background-color:blue;
+        }
+      }
+    </style>
+    <div class="container">
+         <div class="box dark_blue"</div>
+         <div class="box light_blue"</div>
+         <div class="box green"</div>
+    </div>
+
+    <!--
+    /*column drop*/   /*mostly fluid: about same as column drop with multiple rows*/
+    -->
+    <style type="text/css">
+      .container {
+        display: flex; /* fluid*/
+        flex-wrap: wrap; /* resize to row*/
+      }
+      .box {
+        width: 100% /* whole screen row*/
+      }
+      @media screen and (min-width: 450px){  /* @>450px*/
+        .dark_blue {width:25%}     /* resize to 25% row*/
+        .light_blue {width:75%}     /*resize to 75% row*/
+      }
+      @media screen and (min-width: 550px){  /* @>550px*/
+        .dark_blue, .green {width:25%}     /* dark_blue AND green resize to 25% row*/
+        .light_blue {width:50%}     /*resize to 50% row*/
+      }
+      @media screen and (min-width: 700px){  /* @>700px*/
+        .container {
+          width:700px; /* fix row size to 700*/
+          margin-left:auto;
+          margin-right:auto;
+        }
+      }
+    </style>
+    <div class="container">
+         <div class="box dark_blue"</div>
+         <div class="box light_blue"</div>
+         <div class="box green"</div>
+    </div>
+
+    <!--
+    /*Layout Shifter*/
+    -->
+    <style>
+      .container {
+           width:100%; /*container now has 100% to be filled*/
+           display: flex; /* fluid*/
+           flex-wrap: wrap; /* resize to row*/
+      }
+      .box {
+           width: 100% /* whole screen row*/
+      }
+      @media screen and (min-width: 500px){  /*when>500px*/
+           .dark_blue {width:50%;}   /*resize to 50%*/
+           #container2 {width:50%;}     /*resize container to 50% row*/
+      }
+      @media screen and (min-width: 600px){  /*when>600px*/
+           .dark_blue {width:25%;order:1;}   /* shrink and move to right (-1 0 1) 0 is default, set order to positive*/
+           #container2 {width:50%;}     /* shrink */
+           .red {width:25%;order:-1;} /* shrink and move to left */
+      }
+    </style>
+    <div class="container">
+         <div class="box dark_blue"</div>
+         <div class="container" id="container2">
+              <div class="box light_blue"</div>
+              <div class="box green"</div>
+         </div>
+         <div class="box red"</div>
+    </div>
+
+    <!--
+    /*off canvas*/
+    -->
+    <style>
+      html,body,main{
+        height:100%; width:100%; /* take full viewport*/
+      }
+      nav {
+        width:300px; /*nav fixed width*/
+        height:100%; /* full viewport*/
+        position: absolute;
+        transform: translate(-300px,0); /* move off screen (left out)*/
+        transition: transform 0.3s ease;  /* animation for moving*/
+      }
+      nav.open {
+        transform: translate(0,0); /* nav appear*/
+      }
+      @media screen and (min-width: 600px){  /*when>600px*/
+        nav{
+          position:relative;
+          transform: translate(0,0); /* when big screen, show nav */
+        }
+        body{
+          display:flex;
+          flex-flow: row nowrap;
+        }
+        main{
+          width:auto;
+          flex-grow:1; /* take all remaining */
+        }
+      }
+    </style>
+    <script>
+      menu.addEventListener('click',function(e){
+           drawer.classList.toggle('open');
+           e.stopPropagation();
+      });
+    </script>
+    <nav id="drawer" class="dark_blue"></nav>
+    <main class="light_blue"></main>
+
+    <!--
+    /*hide*/
+    -->
+    <style>
+      @media screen and (max-width: 499px){
+        .gametime{display:none;} /* hide this when screen is small*/
+      }
+    </style>
+
+    <!--
+    /* no tables */
+    -->
+    <style>
+      @media screen and (max-width: 500px){
+        table, thead, tbody, th, td, tr{display:block;} /*table elements becomes blocks, no more tables*/
+        thead, tr{position:absolute;top:-9999px;left:-9999px;} /* move off screen for blinds */
+        td{position:relative; padding-left:50%;}/*table cells now have paddings */
+        td:before{  /*to put headers before table cells */
+          position:absolute;
+          left:6px;
+          content:attr(data-th);
+          font-weight:bold;
+        }
+      }
+    </style>
+
+    <!--
+    /* scroll better */
+    -->
+    <style>
+      div_container_table{
+        width:100%; /*take whole width*/
+        overflow-x: auto; /*make it scroll*/
+      }
+    </style>
+
+    <!--
+    /*fonts*/
+      65 letters per line
+      16px, 1.2em - 18px, 1.25em
+    -->
+
+  </body>
+
+</html>
