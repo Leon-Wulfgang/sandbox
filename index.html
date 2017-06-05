@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>resp</title>
+
+    <!--jQ-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/jq.js"></script>
+
+    <!--css-->
+    <!--util-->
+    <link rel="stylesheet" href="css/util.css">
+    <!--divs and break points-->
+    <link rel="stylesheet" href="css/breakPoints.css">
+    <!--column drop-->
+    <link rel="stylesheet" href="css/columnDrop.css">
+    <!--layoutShifter-->
+    <link rel="stylesheet" href="css/layoutShifter.css">
+    <!--offCanvas-->
+    <link rel="stylesheet" href="css/offCanvas.css">
+
+  </head>
+
+  <body>
+
+    <!--jQ selector-->
+    <input id="input" value="Cool Articles" type="text">
+    <h1>Cool Articles</h1>
+    <div id="select-li"></div>
+    before ul
+    <ul id="jqul">
+      ul child
+      <li class="featured">featured</li>
+      <li href="#no" id="testitem">testitem</li>
+      <li class="classitem">classitem</li>
+      <li id="rm">remove</li>
+    </ul>
+    after ul
+
+    <!--
+    divs and break points
+    breakPoints.css
+    -->
+    <div class="container-1">CONTAINER-1
+         <div class="box dark_blue">BOX</div>
+         <div class="box light_blue">BOX</div>
+         <div class="box green">BOX</div>
+    </div>
+
+    <!--
+    /*column drop*/   /*mostly fluid: about same as column drop with multiple rows*/
+    -->
+    <div class="container-2">CONTAINER-2
+         <div class="box-row dark_blue">BOX</div>
+         <div class="box-row light_blue">BOX</div>
+         <div class="box-row green">BOX</div>
+    </div>
+
+    <!--
+    /*Layout Shifter*/
+    -->
+    <div class="container-shift">container-shift
+         <div class="box-row  dark_blue">box-row  dark_blue</div>
+         <div class="container-shift" id="container2">container2
+              <div class="box-row  light_blue">box-row  light_blue</div>
+              <div class="box-row  green">box-row  green</div>
+         </div>
+         <div class="box-row  red">box-row  red</div>
+    </div>
+
+    <!--
+    /*off canvas*/
+    -->
+    <script>
+      /*
+      menu.addEventListener('click',function(e){
+           drawer.classList.toggle('open');
+           e.stopPropagation();
+      });
+      */
+    </script>
+    <nav id="drawer" class="dark_blue"></nav>
+    <main class="light_blue"></main>
+
+  </body>
+
+</html>

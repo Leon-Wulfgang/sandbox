@@ -1,0 +1,40 @@
+.dark_blue{
+  background-color: blue;
+}
+.light_blue{
+  background-color: yellow;
+}
+.green{
+  background-color: green;
+}
+.red{
+  background-color: red;
+}
+.container-1{
+  width:100%;
+  display: flex; /* fluid divs, resize divs, by default into row*/
+  flex-wrap: wrap; /* no-resize divs, wrap to next row*/
+}
+.box {
+  width : 150px;
+}
+@media screen and (min-width: 700px) {
+  .dark_blue {order: 3} /*order of element, -1 > 0 > 1 */
+  .light_blue {order: 1}
+  .green {order: 2}
+}
+@media screen and (max-width: 400px) { /*applies when screen < 400px*/
+  .container-1 {
+    background-color:red;
+  }
+}
+@media screen and (min-width: 401px) and (max-width: 599px) { /*applies when 401px < screen < 599px */
+  .container-1 {
+    background-color:green;
+  }
+}
+@media screen and (min-width: 600px) { /*applies when screen > 600px*/
+  .container-1 {
+    background-color:blue;
+  }
+}

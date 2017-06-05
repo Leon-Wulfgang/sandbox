@@ -1,0 +1,19 @@
+* {
+    border: 1px solid red !important;
+}
+
+/*hide*/
+@media screen and (max-width: 499px){
+  .gametime{display:none;} /* hide this when screen is small*/
+}
+
+/* scroll better */
+div_container_table{
+  width:100%; /*take whole width*/
+  overflow-x: auto; /*make it scroll*/
+}
+
+/*fonts
+  65 letters per line
+  16px, 1.2em - 18px, 1.25em
+*/

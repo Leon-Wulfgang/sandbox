@@ -1,0 +1,17 @@
+.container-shift {
+  width:100%; /*container now has 100% to be filled*/
+  display: flex; /* fluid*/
+  flex-wrap: wrap; /* resize to row*/
+}
+.box-row {
+  width: 100% /* whole screen row*/
+}
+@media screen and (min-width: 500px){  /*when>500px*/
+  .dark_blue {width:50%;}   /*resize to 50%*/
+  #container2 {width:50%;}     /*resize container to 50% row*/
+}
+@media screen and (min-width: 600px){  /*when>600px*/
+  .dark_blue {width:25%;order:1;}   /* shrink and move to right (-1 0 1) 0 is default, set order to positive*/
+  #container2 {width:50%;}     /* shrink */
+  .red {width:25%;order:-1;} /* shrink and move to left */
+}

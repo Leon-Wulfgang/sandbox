@@ -1,0 +1,22 @@
+.container-2 {
+  display: flex; /* fluid*/
+  flex-wrap: wrap; /* resize to row*/
+}
+.box-row {
+  width: 100% /* whole screen row*/
+}
+@media screen and (min-width: 450px){  /* @>450px*/
+  .dark_blue {width:25%}     /* resize to 25% row*/
+  .light_blue {width:75%}     /*resize to 75% row*/
+}
+@media screen and (min-width: 550px){  /* @>550px*/
+  .dark_blue, .green {width:25%}     /* dark_blue AND green resize to 25% row*/
+  .light_blue {width:50%}     /*resize to 50% row*/
+}
+@media screen and (min-width: 700px){  /* @>700px*/
+  .container {
+    width:700px; /* fix row size to 700*/
+    margin-left:auto;
+    margin-right:auto;
+  }
+}

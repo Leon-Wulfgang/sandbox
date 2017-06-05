@@ -1,0 +1,27 @@
+html,body,main{
+  height:100%; width:100%; /* take full viewport*/
+}
+nav {
+  width:300px; /*nav fixed width*/
+  height:100%; /* full viewport*/
+  position: absolute;
+  transform: translate(-300px,0); /* move off screen (left out)*/
+  transition: transform 0.3s ease;  /* animation for moving*/
+}
+nav.open {
+  transform: translate(0,0); /* nav appear*/
+}
+@media screen and (min-width: 600px){  /*when>600px*/
+  nav{
+    position:relative;
+    transform: translate(0,0); /* when big screen, show nav */
+  }
+  body{
+    display:flex;
+    flex-flow: row nowrap;
+  }
+  main{
+    width:auto;
+    flex-grow:1; /* take all remaining */
+  }
+}

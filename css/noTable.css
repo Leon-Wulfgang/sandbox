@@ -1,0 +1,12 @@
+/* no tables */
+@media screen and (max-width: 500px){
+  table, thead, tbody, th, td, tr{display:block;} /*table elements becomes blocks, no more tables*/
+  thead, tr{position:absolute;top:-9999px;left:-9999px;} /* move off screen for blinds */
+  td{position:relative; padding-left:50%;}/*table cells now have paddings */
+  td:before{  /*to put headers before table cells */
+    position:absolute;
+    left:6px;
+    content:attr(data-th);
+    font-weight:bold;
+  }
+}
