@@ -2,6 +2,10 @@
     border: 1px solid red !important;
 }
 
+.jq{
+  width:100%;
+}
+
 /*hide*/
 @media screen and (max-width: 499px){
   .gametime{display:none;} /* hide this when screen is small*/
