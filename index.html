@@ -12,6 +12,7 @@
     <!--jQ-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/jq.js"></script>
+    <script src="js/ajax.js"></script>
 
     <!--css-->
     <!--util-->
@@ -24,10 +25,32 @@
     <link rel="stylesheet" href="css/layoutShifter.css">
     <!--offCanvas-->
     <link rel="stylesheet" href="css/offCanvas.css">
+    <!--ajax-->
+    <link rel="stylesheet" href="css/ajax.css">
 
   </head>
 
   <body>
+
+    <!--ajax-->
+    <div class="ajax-container">
+      <form id="form-container" class="form-container">
+          <label for="street">Street: </label><input type="text" id="street" value="">
+          <label for="city">City: </label><input type="text" id="city" value="">
+          <button id="submit-btn">Submit</button>
+      </form>
+      <hr>
+      <h2 id="greeting" class="greeting">Where do you want to live?</h2>
+      <div class="wikipedia-container">
+          <h3 id="wikipedia-header">Relevant Wikipedia Links</h3>
+          <ul id="wikipedia-links">Type in an address above and find relevant Wikipedia articles here!</ul>
+      </div>
+      <div class="nytimes-container">
+          <h3 id="nytimes-header">New York Times Articles</h3>
+          <ul id="nytimes-articles" class="article-list">What's going on in your new city? Enter an address and hit submit and the NY Times will tell you here!</ul>
+      </div>
+    </div>
+
 
     <div class="jq">
       <!--jQ event-->
@@ -52,10 +75,6 @@
       after ul
 
     </div>
-
-
-
-
 
 
     <!--

@@ -4,6 +4,23 @@ middle age, western + eastern
 light fantasy
 bend rated content in
 offline async pvp
-offline party 
+offline party
 
 game, 1st year $2k, 2nd year $14k, 3rd year $250k
+
+adsense_resp https://www.google.com/adsense
+mobile  https://developers.google.com/admob/
+
+https://stripe.com/
+https://www.paypal.com/home
+https://www.wepay.com/
+https://payments.amazon.com/home
+https://developer.android.com/google/play/billing/index.html
+https://developer.amazon.com/appsandservices/apis/earn/in-app-purchasing
+
+https://support.google.com/tagmanager/answer/6103696?hl=en&rd=1
+https://support.google.com/analytics/answer/1008080?hl=en
+https://support.google.com/tagmanager/answer/3127354?hl=en
+https://developers.google.com/analytics/solutions/mobile
+
+nyt   e7275f48c3a44d5eb577f3c3f6e58738
