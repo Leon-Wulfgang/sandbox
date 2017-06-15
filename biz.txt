@@ -1,3 +1,17 @@
+skyrim
+  skillProg
+eve
+  playerCraft
+  resourceShare
+  robSafeZone
+clash
+  offlineGather
+  offlinePvp
+
+
+
+
+
 text/button/charts based
 resource auction
 middle age, western + eastern
