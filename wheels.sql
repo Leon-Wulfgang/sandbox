@@ -104,3 +104,16 @@ select food, count(1) as c
   group by food
   having c = 1
   ; # which animal only have one food
+
+
+#UPDATE#
+update posts
+    set content = 'cheese'
+    where content LIKE '%test%'
+    ;
+
+
+#DELETE#
+DELETE FROM posts
+    WHERE content LIKE 'cheese'
+    ;

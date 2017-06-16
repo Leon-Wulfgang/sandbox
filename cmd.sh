@@ -1,3 +1,7 @@
+psql forum
+
+
+#HEROKU#
 heroku config:set MYKEY=myvalue # set env vars for container
 heroku pg:psql # start a pg console
 heroku restart # manually restart container
@@ -16,6 +20,8 @@ heroku open # open application in default browser
 heroku create # new application, after creation, git remote -v lists both git and heroku
 heroku login # user/pass
 
+
+#GIT#
 git remote -v # add/set remote
 git branche -all # show all branch
 git pull  # pull commits from remote
@@ -31,6 +37,8 @@ git checkout -b pg origin/pg  # checkout branch pg from remote:origin/pg
 git checkout master # checkout master branch
 git clone https://github.com/haowu0802/sandbox.git # clone repository to local
 
+
+#SHELL#
 export AWS_KEY="MYKEY" # set env var
 printevn # print environment variables
 glob # file grabber
