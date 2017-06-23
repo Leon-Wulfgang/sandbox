@@ -38,31 +38,6 @@ git checkout master # checkout master branch
 git clone https://github.com/haowu0802/sandbox.git # clone repository to local
 
 
-#VAGRANT#
-vagrant version
-vagrant init ubuntu/trusty64 # create Vagrantfile for some box
-vagrant up # download and setup box according to Vagrantfile
-vagrant status # running/stopped/suspended(saved)
-vagrant suspend
-vagrant up # start/restart box
-vagrant ssh # connect and login to box
-vagrant halt # save and shut down - vs vagrant up
-vagrant destroy # format and forget box, used up will restore to baseline
-
-
-#LINUX#
-# d:dir | -:file
-# root user dir : /root/
-# user home dir : /home/<user>
-# /etc: conf files
-# /var: variable files, that grow in time, eg. system,log,app
-#   /bin: executable binary, by all users, eg. ls
-#   /sbin: only for root user, sys admin
-#   /lib: support binary
-#   /usr: user programs, not required at boot up
-# echo $PATH - separated by :
-
-
 #SHELL#
 ls -al # list all files including hidden ones - long version
 pwd # current dir
@@ -75,7 +50,6 @@ mkdir # make directory
 cp /from /to # copy from arg1 to arg2
 mv /from /to # move from arg1 to arg2
 cd .. # one level up
-nano  # linux editor, easy
 # rm -rf /  # remove all files and folders recursively with force flag
 date #print date and time
 expr 2 + 2  # calculate 2+2 print 4
