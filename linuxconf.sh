@@ -73,3 +73,21 @@ sudo ufw enable # enable firewall, if ssh not allowed, remote access will be dea
 # https://www.digitalocean.com/community/tutorials/how-to-run-your-own-mail-server-and-file-storage-with-peps-on-ubuntu-14-04
 # https://www.digitalocean.com/community/tutorials/how-to-run-your-own-mail-server-with-mail-in-a-box-on-ubuntu-14-04
 # https://www.digitalocean.com/community/tutorials/how-to-install-the-lita-chat-bot-for-irc-on-ubuntu-14-04
+
+
+sudo apt-get install apache2    # install apache2 http server
+sudo apt-get install libapache2-mod-wsgi    # install wsgi mod for apache, application handler
+/etc/apache2/sites-enabled/000-default.conf # apache conf
+WSGIScriptAlias / /var/www/html/myapp.wsgi  # mod wsgi, myapp.wsgi can contain python code
+sudo apache2ctl restart # restart apache
+sudo apt-get install postgresql # install pg
+sudo passwd postgres # assign new pass to postgres
+su postgres # switch to postgres user
+psql # connect to pg as postgres user
+sudo -u postgres createuser www-data    # create apache server user
+sudo -u postgres createdb -O www-data test # create db test for www-data user as owner
+create database test; # create db test
+ALTER DATABASE test OWNER TO www-data;  # set test owner to www-data
+\q # exit psql
+\c test # connect to test db
+sudo apt-get install python-psycopg2    # install psycopg2 lib for python to connect to pg
