@@ -23,7 +23,7 @@ import cgi
 # sqlalchemy orm
 from sqlalchemy import create_engine  # for db engine
 from sqlalchemy.orm import sessionmaker  # for sql sessions
-from sqlalchemydbinit import Base, Restaurant, MenuItem  # basic Base class extended from delaritve_base() and example classes
+from sql_alchemy_orm import Base, Restaurant, MenuItem  # basic Base class extended from delaritve_base() and example classes
 
 # DB conf
 engine = create_engine('sqlite:///restaurantmenu.db')  # create sqlite db conf

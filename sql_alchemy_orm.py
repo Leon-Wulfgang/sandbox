@@ -24,6 +24,13 @@ class Restaurant(Base):
         nullable=False
     )
 
+    @property
+    def serialize(self):
+        # returns json
+        return {
+            'id': self.id,
+            'name': self.name
+        }
 
 # class/table menu item
 class MenuItem(Base):
@@ -59,6 +66,17 @@ class MenuItem(Base):
     )
     # relationship
     restaurant = relationship(Restaurant)  # set relationship to Restaurant class
+
+    @property
+    def serialize(self):
+        # returns json
+        return {
+            'id': self.id,
+            'name': self.name,
+            'price': self.price,
+            'description': self.description,
+            'course': self.course
+        }
 
 
 # --ENGINE--    insert at end of file
