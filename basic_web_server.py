@@ -1,17 +1,3 @@
-# TCP
-# UDP
-# HTTP
-# verbs [2/9]
-#   GET     read, safe method, 200 ok
-#   POST    create, 201 created
-#   PUT     update/replace, 404 not found
-#   PATCH   partial update/modify, 404
-#   DELETE  delete  404
-# status code
-#   200     success get
-#   301     success post
-#   404     file not found
-
 #   BaseHTTPserver  https://docs.python.org/2/library/basehttpserver.html
 
 # basic python http server lib
