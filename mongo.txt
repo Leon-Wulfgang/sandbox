@@ -1,0 +1,211 @@
+{
+   _id: ObjectId(7df78ad8902c)
+/* first 4: timestamp, next 3:machine_id, next 2:process_id of mongoServer, last 3:incremental value */
+   title: 'MongoDB Overview',
+   description: 'MongoDB is no sql database',
+   tags: ['mongodb', 'database', 'NoSQL'],
+   likes: 100,
+   comments: [
+      {
+         user:'user1',
+         message: 'My first comment',
+         dateCreated: new Date(2011,1,20,2,15),
+         like: 0
+      },
+      {
+         user:'user2',
+         message: 'My second comments',
+         dateCreated: new Date(2011,1,25,7,45),
+         like: 5
+      }
+   ]
+}
+/*
+if you try to sort a very large result set which can’t use an index, you’ll get an error.
+decide when to user embedded doc vs separate query
+logging, async writes, tail capped collection, ttl expire doc
+transactions - built in operators | 2-phase commit, store state of transaction
+mongoDB for Hadoop
+aggregation - $project for do math on exist field produce new field
+replication - 3 or more server, same data, write to primary, dup to all sec
+sharding - load balance to multiple servers
+mongodump - BSON
+*/
+
+/* create(insert) read(find) delete(remove) */
+db.unicorns.insert({  // create
+  name: 'Dunx',
+  dob: new Date(1976, 6, 18, 18, 18),
+  loves: ['grape', 'watermelon'],
+  weight: 704,
+  gender: 'm',
+  vampires: 165
+});
+db.unicorns.find({  // find all m with wt > 700
+  gender: 'm',
+  weight: {$gt: 700}
+})
+db.unicorns.find({  //or (not quite the same thing, but for demonstration purposes)
+  gender: {$ne: 'f'},
+  weight: {$gte: 701}
+})
+db.unicorns.find({  // ones without vampires field
+  vampires: {$exists: false}
+})
+db.unicorns.find({  // love apple OR orange, love is array
+  loves: {$in:['apple','orange']}
+})
+db.unicorns.find({  // f and (love apple OR lt 500)
+  gender: 'f',
+  $or: [
+    {loves: 'apple'},
+    {weight: {$lt: 500}}
+  ]
+})
+db.unicorns.remove({})  // remove all
+db.unicorns.remove({  // remove all f
+  gender: 'f'
+})
+
+
+/* updates */
+db.unicorns.update(  // update must use set, o/w replace with subset
+  {name: 'Roooooodles'},
+  {$set: {weight: 590}}
+)
+db.unicorns.update(  // add -2 to vampires field of Pilot, mod number
+  {name: 'Pilot'},
+  {$inc: {vampires: -2}}
+)
+db.unicorns.update(  // give Aurora sugar love, push new ele into field
+  {name: 'Aurora'},
+  {$push: {loves: 'sugar'}}
+)
+db.hits.update(  // +1 to hits of page "unicorns", if !exist, create
+  {page: 'unicorns'},
+  {$inc: {hits: 1}},
+  {upsert:true}
+);
+db.unicorns.update(  // multi update, w/o it, only update first found
+  {},
+  {$set: {vaccinated: true }},
+  {multi:true}
+);
+
+
+/* adv find */
+db.unicorns.find( // SELECT find all, show only name field
+  {},
+  {name: 1}
+);
+db.unicorns.find().sort(  // ORDER sort by unicorn name then vampire kills:
+  {name: 1, //asc
+  vampires: -1} //desc
+)
+db.unicorns.find()  // 2nd and 3rd heaviest
+  .sort({weight: -1})
+  .limit(2)
+  .skip(1)
+db.unicorns.count({vampires: {$gt: 50}})  // count
+db.unicorns.find({vampires: {$gt: 50}}).count()
+
+
+/* no joins == one extra query */
+db.employees.insert(  // manager Leto
+  {_id: ObjectId("4d85c7039ab0fd70a117d730"),
+  name: 'Leto'}
+)
+db.employees.insert(  // managed by Leto 0
+  {_id: ObjectId("4d85c7039ab0fd70a117d731"),
+  name: 'Duncan',
+  manager: ObjectId("4d85c7039ab0fd70a117d730")}
+);
+db.employees.insert(  // managed by Leto 1
+  {_id: ObjectId("4d85c7039ab0fd70a117d732"),
+  name: 'Moneo',
+  manager: ObjectId("4d85c7039ab0fd70a117d730")}
+);
+db.employees.find(  // get all who managed by Leto
+  {manager: ObjectId("4d85c7039ab0fd70a117d730")}
+)
+db.employees.insert(  // 2 manager employee, .find({manager: ObjectId("4d85c7039ab0fd70a117d730")}) works
+  {_id: ObjectId("4d85c7039ab0fd70a117d733"),
+  name: 'Siona',
+  manager: [ObjectId("4d85c7039ab0fd70a117d730"),ObjectId("4d85c7039ab0fd70a117d732")] }
+)
+db.employees.insert(  // EMBEDDED
+  {
+    _id: ObjectId("4d85c7039ab0fd70a117d734"),
+    name: 'Ghanima',
+    family: {
+      mother: 'Chani',
+      father: 'Paul',
+      brother: ObjectId("4d85c7039ab0fd70a117d730")
+      }
+  }
+)
+db.employees.find({ // find in embedded with dot
+  'family.mother': 'Chani'
+})
+db.employees.insert(  // embedded array of docs
+  {
+    _id: ObjectId("4d85c7039ab0fd70a117d735"),
+    name: 'Chani',
+    family: [
+      {relation:'mother',name: 'Chani'},
+      {relation:'father',name: 'Paul'},
+      {relation:'brother', name: 'Duncan'}
+    ]
+  }
+)
+
+
+/* aggregation */
+db.unicorns.aggregate([ // aggregate takes [] of pipeline ops
+    {$group:  // group by gender into total
+      {
+        _id:'$gender',  // $ : value substituted
+        total: {$sum:1} // sum 1 for each in group
+      }
+    }
+])
+db.unicorns.aggregate([
+  {$match: {weight:{$lt:600}}}, // match/find wt < 600
+  {$group: {
+    _id:'$gender',  // then group by gender
+    total:{$sum:1}, // calc total with sum 1
+    avgVamp:{$avg:'$vampires'} // avg is a group op
+    }
+  },
+  {$sort:{avgVamp:-1}}
+])
+db.unicorns.aggregate([ // flatten loves array
+  {$unwind:'$loves'}, //find out which food item is loved by the most unicorns
+  {$group:
+    {_id:'$loves',
+    total:{$sum:1},
+    unicorns:{$addToSet:'$name'}}//also get the list of names of all the unicorns that love it
+  },
+  {$sort:{total:-1}},// get top X
+  {$limit:1}
+])
+
+
+/* PERF */
+db.unicorns.ensureIndex({name: 1});// make name an index, where "name" is the field name
+db.unicorns.dropIndex({name: 1}); // remove index name
+db.unicorns.ensureIndex(
+  {name: 1},    // make name an index
+  {unique: true} // and make it unique
+);
+db.unicorns.ensureIndex(
+  {name: 1,vampires: -1} // compound index on 2 field
+);
+db.unicorns.find().explain() // see if using index, BtreeCursor for indexed, BasicCursor for not
+
+
+/*TOOLS*/
+mongodump --db learn --out backup // backup learn to backup folder
+mongorestore --db learn --collection unicorns backup/learn/unicorns.bson // restore only unicorns from bson
+mongoexport/import // for json, not exact data
+mongoexport --db learn --collection unicorns --csv --fields name,weight,vampires // for csv, some field
