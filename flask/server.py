@@ -1,4 +1,4 @@
-from flask_server_rest import Flask
+from flask.flask_server_rest import Flask
 app = Flask(__name__)
 
 @app.route("/")

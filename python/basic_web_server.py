@@ -1,15 +1,15 @@
 #   BaseHTTPserver  https://docs.python.org/2/library/basehttpserver.html
 
-# basic python http server lib
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer  # if py3 import http.server
-
 # common gateway interface lib
 import cgi
 
+# basic python http server lib
+from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer  # if py3 import http.server
 # sqlalchemy orm
 from sqlalchemy import create_engine  # for db engine
 from sqlalchemy.orm import sessionmaker  # for sql sessions
-from sql_alchemy_orm import Base, Restaurant, MenuItem  # basic Base class extended from delaritve_base() and example classes
+
+from sql.sql_alchemy_orm import Base, Restaurant  # basic Base class extended from delaritve_base() and example classes
 
 # DB conf
 engine = create_engine('sqlite:///restaurantmenu.db')  # create sqlite db conf

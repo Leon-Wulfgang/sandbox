@@ -4,15 +4,15 @@
 
 # flask
 from flask import Flask  # flask micro framework
-from flask import render_template  # for rendering heml templates
-from flask import url_for  # for generating elegant urls http://flask.pocoo.org/docs/0.12/blueprints/#building-urls
-# url_for('function_name',arg0, arg1...)
-from flask import request  # for taking post form
-from flask import redirect  # for easy redirection
 # redirect(url_for('function_name',[args]))
-from flask import flash, get_flashed_messages  # for flashing message
+from flask import flash  # for flashing message
 # app.secret_key = '<key>'
 from flask import jsonify  # jsonofy things
+from flask import redirect  # for easy redirection
+from flask import render_template  # for rendering heml templates
+# url_for('function_name',arg0, arg1...)
+from flask import request  # for taking post form
+from flask import url_for  # for generating elegant urls http://flask.pocoo.org/docs/0.12/blueprints/#building-urls
 
 # template examples:    default dir = /templates/
 """
@@ -24,12 +24,12 @@ from flask import jsonify  # jsonofy things
 # static files:     default dir = /static/
 # JSON - JS object notation
 
-from flask_pg import get_posts, add_post
+from flask.flask_pg import get_posts, add_post
 
 # sqlalchemy
 from sqlalchemy import create_engine  # use at end of conf
 from sqlalchemy.orm import sessionmaker
-from sql_alchemy_orm import Base, Restaurant, MenuItem  # basic Base class extended from delaritve_base()
+from sql.sql_alchemy_orm import Base, Restaurant, MenuItem  # basic Base class extended from delaritve_base()
 
 # -INIT SQLALCHEMY- #
 engine = create_engine('sqlite:///restaurantmenu.db')  # create sqlite db conf
