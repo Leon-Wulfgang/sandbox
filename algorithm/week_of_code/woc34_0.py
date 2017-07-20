@@ -7,6 +7,7 @@ For example, number 165912 is lucky because sum of , and .
 Since the number on the ticket wasn't lucky, Jack needs your help to find the next lucky ticket number.
 For example, if Jack's ticket number is 165901, then the next lucky ticket number is 165903.
 Given Jack's current ticket number, find and print the next lucky ticket number.
+https://www.hackerrank.com/contests/w34/challenges/once-in-a-tram
 
 my solution:
 increment digit until find a match, digit set to be 6, short enough to just increment
